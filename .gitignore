@@ -1,0 +1,6 @@
+bin/
+gen/
+libs/
+proguard_cache/
+proguard_cache_conf/
+
