@@ -7,12 +7,11 @@ import java.io.OutputStream
 import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
-
 import scala.io.BufferedSource
 import scala.io.Codec
-
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 
 class SimpleServer extends Activity {
   override protected def onCreate(savedInstanceState: Bundle) {
@@ -121,13 +120,13 @@ class ConResponse(clientSocket: Socket) extends Runnable {
     val buffer = new Array[Byte](in.available)
     in.read(buffer)
     val request = new String(buffer)
-    println("-------REQUEST--------\n" + request)
+    Log.d("REQUEST",request)
 
     // build response
     val response = buildResponse(request)
     val header = response._1
     val body = response._2
-    println("-------RESPONSE-------\n" + header.toString)
+    Log.d("RESPONSE",header.toString)
 
     // send response
     val out = clientSocket.getOutputStream
